@@ -24,5 +24,5 @@ public interface CountryDao {
     int getNumberOfCountries();
 
     @Insert
-    void insertAll(Country... countries);
+    void insertAll(List<Country> countries);
 }

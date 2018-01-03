@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.kovedward.android.guesscountry.database.AppDatabase;
+import com.kovedward.android.guesscountry.database.ListOfCountries;
 import com.kovedward.android.guesscountry.model.Country;
 
 import java.util.ArrayList;
@@ -65,15 +66,7 @@ public class GuessActivity extends AppCompatActivity {
             database = AppDatabase.getAppDatabase(getApplicationContext());
 
             if (database.countryDao().getNumberOfCountries() == 0){
-                database.countryDao().insertAll(
-                        new Country("Italy", "pasta", "wolf", "soccer"),
-                        new Country("Germany", "sausages", "bear", "hockey"),
-                        new Country("France", "chocolate", "frog", "tennis"),
-                        new Country("England", "oatmeal", "squirrel", "golf"),
-                        new Country("Ukraine", "vareniki", "boar", "golf"),
-                        new Country("USA", "pizza", "eagle", "football")
-
-                );
+                database.countryDao().insertAll(ListOfCountries.COUNTRIES);
             }
 
             int numberOfCountries = database.countryDao().getNumberOfCountries();
