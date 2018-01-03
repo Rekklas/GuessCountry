@@ -9,13 +9,19 @@ import com.kovedward.android.guesscountry.model.Country;
 import java.util.List;
 
 /**
- * Created by user on 03.01.2018.
+ * Interface that contains the methods used for accessing the database
  */
 @Dao
 public interface CountryDao {
 
     @Query("SELECT * FROM countries")
     List<Country> getAll();
+
+    @Query("SELECT * FROM countries WHERE id IN (:countriesVariants)")
+    List<Country> getCountriesForQuestion(List<Integer> countriesVariants);
+
+    @Query("SELECT COUNT(*) FROM countries")
+    int getNumberOfCountries();
 
     @Insert
     void insertAll(Country... countries);

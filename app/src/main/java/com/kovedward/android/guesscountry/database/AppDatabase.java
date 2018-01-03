@@ -8,7 +8,9 @@ import android.content.Context;
 import com.kovedward.android.guesscountry.model.Country;
 
 /**
- * Created by user on 03.01.2018.
+ * Abstract singleton class that is responsible for giving a database instance
+ * or destroying it
+ *
  */
 
 @Database(entities = {Country.class}, version = 1, exportSchema = false)
@@ -22,12 +24,6 @@ public abstract class AppDatabase extends RoomDatabase {
             INSTANCE =
                     Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "countries.db")
                             .build();
-            INSTANCE.countryDao().insertAll(
-                    new Country("Italy", "pasta", "wolf", "football"),
-                    new Country("Germany", "sausages", "bear", "hockey"),
-                    new Country("France", "chocolate", "frog", "tennis"),
-                    new Country("England", "oatmeal", "squirrel", "golf")
-            );
         }
         return INSTANCE;
     }
