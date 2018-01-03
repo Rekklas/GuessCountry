@@ -1,6 +1,7 @@
 package com.kovedward.android.guesscountry.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -20,8 +21,24 @@ public class Country {
     private String animal;
     private String other;
 
+    @Ignore
+    public Country() {
+
+    }
+
+    public Country(String country, String food, String animal, String other) {
+        this.country = country;
+        this.food = food;
+        this.animal = animal;
+        this.other = other;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCountry() {
@@ -54,5 +71,16 @@ public class Country {
 
     public void setOther(String other) {
         this.other = other;
+    }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", food='" + food + '\'' +
+                ", animal='" + animal + '\'' +
+                ", other='" + other + '\'' +
+                '}';
     }
 }
